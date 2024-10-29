@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="navbar-left">
+            <img src="{{ url_for('static', filename = 'images/logo/' + 'movieLogo.png') }}" alt="Logo">
+            <h1> <a href="{{ url_for('home_page') }}" style="text-decoration: none; color: white;"> ReelSearch </a></h1>
+        </div>
+        <div class="navbar-right">
+            <span>"Explore, Search, Watch"</span>
+        </div>
+    </div>
+
+    <!-- Menu -->
+    <div class="sidebar">
+        <img src="{{ url_for('static', filename = 'images/logo/' + 'movieSearch.png') }}" alt="Logo">
+        <a href="{{ url_for('docs_page') }}"> Movie Collection </a>
+        <a href="{{ url_for('query_page') }}"> Queries List </a>
+        <a href="{{ url_for('search_page') }}"> Movie Search </a>
+    </div>
+
+    <!-- Main Section -->
+    <div class="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+
+<style>
+    body {
+        background-color: #1e293b;
+        color: #e2e8f0;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #0f172a;
+        padding: 15px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+    }
+
+    .navbar-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-left img {
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .navbar-left h1 {
+        color: #e2e8f0;
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .navbar-right {
+        color: #e2e8f0;
+        font-size: 18px;
+        font-style: italic;
+        padding-right: 30px;
+    }
+
+    .sidebar {
+        height: 100vh; /* Full height */
+        width: 275px;
+        background-color: #273548;
+        position: fixed;
+        top: 70px;
+        padding-top: 50px; /* Adjust to align with navbar */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+    }
+
+    .sidebar img {
+        height: 250px; /* Bigger logo size */
+        margin-top: 20px;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    .sidebar a {
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        text-decoration: none;
+        color: #e2e8f0;
+        font-size: 18px;
+    }
+
+    .sidebar a:hover {
+        background-color: #64748b;
+    }
+
+    /* Main content styling to ensure space for the sidebar */
+    .main-content {
+        margin-left: 275px;
+        padding: 20px;
+        margin-top: 70px; /* To ensure it doesn't go under navbar */
+    }
+
+    /* Grid layout for document cards */
+    .document-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5 cards per row */
+        gap: 30px; /* Space between cards */
+    }
+
+    /* Document card styles */
+    .document-card {
+        background-color: #0f172a;
+        border: 1px solid whitesmoke;
+        border-radius: 8px;
+        overflow: hidden;
+        text-align: center;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .document-card img {
+        width: 100%;
+        height: auto; /* Adjust the size of the image */
+        object-fit: contain;
+        max-height: 300px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .document-card h3 {
+        margin: 10px 0 0;
+        font-size: 16px;
+        color: #e2e8f0;
+    }
+
+</style>
+</html>

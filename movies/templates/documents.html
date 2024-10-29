@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Documents
+{% endblock %}
+
+{% block content %}
+<h2>List of Movies</h2>
+<div class="document-grid">
+    {% for doc in documents %}
+    <div class="document-card">
+        <img src="{{ url_for('static', filename='images/movies/' + doc.replace(' ', '_') + '.jpg') }}" alt="{{ doc }}">
+        <h3>{{ doc }}</h3>
+    </div>
+    {% endfor %}
+{% endblock %}

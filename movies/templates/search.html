@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Search Page
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="search-container">
+            <h2 style="text-align: center;"> Search for Movies </h1>
+            <form action= "{{ url_for('search_results') }}" method="POST" class="search-bar-container">
+                <input type="text" name="query" placeholder="Search..." class="search-bar">
+                <button class="search-button">
+                <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+    
+        <!-- New Horizontal Section -->
+        <div class="horizontal-section">
+            {% block search_content %}
+            {% endblock %}
+            
+            {% if show_watermark %}
+                <div class="watermark"></div>
+            {% endif %}
+
+        </div>
+    </div>
+
+<style>
+
+    /* Ensure body and html take full height */
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+
+    .search-container {
+        text-align: center;
+        margin: 0px 20px 20px 20px;
+        padding: 0px 20px 20px 20px;
+        border-radius: 8px;
+    }
+
+    .search-bar-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .search-bar {
+        width: 300px;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 20px 0 0 20px;
+        outline: none;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    .search-button {
+        background-color: white;
+        border: 2px solid #ccc;
+        border-radius: 0 20px 20px 0;
+        padding: 10px 20px;
+        cursor: pointer;
+        color: #fff;
+        font-size: 16px;
+        border-left: none;
+    }
+
+    .search-button i {
+        color: black;
+        font-size: 16px;
+    }
+
+    .search-button:hover {
+        background-color: lightgray;
+    }        
+
+    /* New Horizontal Section Styles */
+    .horizontal-section {
+        width: 100%;
+        background-color: #273548; /* Light gray background */
+        display: flex;
+        flex-grow: 1; /* Ensures this section grows to fill remaining height */
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+    .watermark {
+        background-image: url('/static/images/others/search.png'); /* Path to your watermark image */
+        background-size: contain; /* Adjust the size of the image */
+        background-repeat: no-repeat; /* Prevent repeating */
+        background-position: center; /* Center the image */
+        position: absolute; /* Position it absolutely within the parent */
+        top: 48%; /* Align to the top */
+        left: 48%; /* Align to the left */
+        width: 25%; /* Full width */
+        height: 25%; /* Full height */
+        opacity: 0.7; /* Adjust opacity for watermark effect */
+        z-index: 1; /* Send the watermark behind the content */
+    }
+
+
+
+</style>
+
+
+{% endblock %}

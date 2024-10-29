@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReelSearch</title>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="{{ url_for('static', filename = 'images/logo/' + 'movieStart.png') }} ", alt="Logo">
+        </div>
+        <h1 class="project-name"> ReelSearch </h1>
+        <p class="description"> ReelSearch is THE movie search engine, providing intelligent recommendations based on your specific interests. 
+            From dystopian tales to gripping crime thrillers, your next film is just a search away. </p>
+        <a href="{{ url_for('docs_page') }}" class="get-started"> Get Started </a>
+    </div>
+</body>
+
+<style>
+
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('/static/images/others/background.jpg'); /* Path to your background image */
+        background-size: cover; /* Ensures the image covers the whole screen */
+        background-position: center; /* Centers the background image */
+        background-repeat: no-repeat; /* Prevents the image from repeating */
+        background-attachment: fixed; /* Keeps the background fixed while scrolling */
+        color: #e2e8f0;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        text-align: center;
+        width: 50%; /* Reduces the width of the entire container */
+        max-width: 600px; /* Sets a maximum width for the container */
+        background-color: rgba(0, 0, 0, 0.6); /* Optional: Adds a translucent background to improve readability */
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .logo img {
+        border-radius: 15px;
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+
+    .project-name {
+        margin: 0px;
+        font-size: 2em;
+    }
+
+    .description {
+        font-size: 1.2em;
+        margin: 40px 0px;
+        line-height: 1.5;
+    }
+
+    .get-started {
+        text-align: right;
+        padding: 10px 20px;
+        background-color: #1565c0 ; /* Button color */
+        color: #e2e8f0;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .get-started:hover {
+        background-color: #273548; /* Darker shade on hover */
+    }
+</style>
+
+</html>

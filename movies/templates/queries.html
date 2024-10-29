@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Queries
+{% endblock %}
+
+{% block content %}
+
+<div class="queries-content" style="display: flex;">
+
+    <!-- New Sidebar Section -->
+    <div class="new-sidebar">
+        <h3 style="text-align: center;">List of Queries</h3>
+        {% for query_id, query in queries %}
+            <a href="{{ url_for('query_results', query_id= query_id) }}">{{ query }}</a>
+        {% endfor %}
+    </div>
+
+    <!-- New Horizontal Section for Models -->
+    <div class="horizontal-section">
+        
+        {% block query_content %}
+            <h3 style="text-align: center;">Select any pre-defined query to find a movie</h3>
+            <hr style="color: white; width: 100%; height:1px;">
+        {% endblock %}
+
+        {% if show_watermark %}
+            <div class="watermark"></div>
+        {% endif %}
+
+    </div>
+</div>
+
+<style>
+
+    .queries-content {
+        display: flex; /* Align new sidebar and content horizontally */
+        min-height: 88vh; /* Ensure sidebar grows to full height of viewport */
+    }
+
+    .new-sidebar {
+        width: 550px; /* Smaller width for new sidebar */
+        background-color: #0f172a; /* Background color of the new sidebar */
+        padding: 18px; /* Padding inside the new sidebar */
+        border-radius: 8px; /* Rounded corners */
+        overflow-y: auto; /* Allow scrolling if content overflows */
+    }
+
+    .new-sidebar h3 {
+        color: #e2e8f0; /* Heading color */
+        margin-bottom: 30px; /* Space below heading */
+    }
+
+    .new-sidebar a {
+        display: block; /* Block layout for links */
+        border: 1px solid whitesmoke;
+        border-radius: 10px;
+        padding: 10px;
+        text-decoration: none;
+        color: #e2e8f0; /* Link color */
+        margin: 15px 0px 28px 0px; /* Increased space between links */
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .new-sidebar a:hover {
+        background-color: #64748b; /* Darker shade on hover */
+        color:#e2e8f0;
+        transform: translateX(5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .horizontal-section {
+        margin-left: 20px;
+        width: 100%;
+        background-color: #273548; /* Background color for the horizontal section */
+        padding: 15px; /* Padding inside the section */
+        border-radius: 8px; /* Rounded corners */
+        color: #e2e8f0; /* Text color */
+        display: flex; /* Flexbox for the section */
+        flex-direction: column; /* Stack elements vertically */
+        flex-grow: 1; /* Take remaining space */
+        position: relative;
+    }
+
+    .watermark {
+        background-image: url('/static/images/others/select.png'); /* Path to your watermark image */
+        background-size: contain; /* Adjust the size of the image */
+        background-repeat: no-repeat; /* Prevent repeating */
+        background-position: center; /* Center the image */
+        position: absolute; /* Position it absolutely within the parent */
+        top: 200px; /* Align to the top */
+        left: 225px; /* Align to the left */
+        width: 50%; /* Full width */
+        height: 50%; /* Full height */
+        opacity: 0.5; /* Adjust opacity for watermark effect */
+        z-index: 1; /* Send the watermark behind the content */
+    }
+
+</style>
+
+{% endblock %}

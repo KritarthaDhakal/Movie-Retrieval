@@ -1,0 +1,112 @@
+{% extends 'queries.html' %}
+
+{% block query_content %}
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="text-align: left;">{{ selected_query }}</h3>
+    <h3 style="text-align: right;">Top 3 Results</h3>
+</div>
+
+<div class="models-container">
+    <div class="model-section"> <!-- Align text to the left -->
+        <h4>1. With VSM</h4>
+        <div class="document-grid2">
+            {% set d1 = docs[0] %}
+                {% for d1_name, d1_content in d1.items() %}
+                    <div class="document-card2">
+                        <img src="{{ url_for('static', filename='images/movies/' + d1_name.replace(' ', '_') + '.jpg') }}" alt="{{d1_name}}">
+                        <h5> <b> Movie: </b> {{ d1_name }}</h5>
+                        <p> <b> Synopsis: </b> {{ d1_content }}</p>
+                    </div>
+                {% endfor %}
+        </div>
+    </div>
+
+    <div class="model-section"> <!-- Align text to the left -->
+        <h4>2. With BIM </h4>
+        <div class="document-grid2">
+            {% set d2 = docs[1] %}
+                {% for d2_name, d2_content in d2.items() %}
+                    <div class="document-card2">
+                        <img src="{{ url_for('static', filename='images/movies/' + d2_name.replace(' ', '_') + '.jpg') }}" alt="{{d2_name}}">
+                        <h5> <b> Movie: </b> {{ d2_name }}</h5>
+                        <p> <b> Synopsis: </b> {{ d2_content }}</p>
+                    </div>
+                {% endfor %}
+        </div>
+    </div>
+                
+    <div class="model-section"> <!-- Align text to the left -->
+        <h4>3. With Unigram</h4>
+        <div class="document-grid2">
+            {% set d3 = docs[2] %}
+                {% for d3_name, d3_content in d3.items() %}
+                    <div class="document-card2">
+                        <img src="{{ url_for('static', filename='images/movies/' + d3_name.replace(' ', '_') + '.jpg') }}" alt="{{d3_name}}">
+                        <h5> <b> Movie: </b> {{ d3_name }}</h5>
+                        <p> <b> Synopsis: </b> {{ d3_content }}</p>
+                    </div>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<style>
+
+    .new-sidebar a {
+        margin: 40px 0px;
+    }
+
+    .models-container {
+        display: flex; /* Flexbox for model sections */
+        flex-direction: column; /* Stack models vertically */
+        width: 100%; /* Full width */
+    }
+
+    .model-section {
+        text-align: left; /* Align text to the left */
+    }
+
+    .document-grid2 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+        gap: 20px; /* Space between cards */
+        margin: 20px 0px 50px 0px; /* Space above grid */
+    }
+
+    /* Document card styles */
+    .document-card2 {
+        width: 75%;
+        background-color: #0f172a;
+        border: 1px solid whitesmoke;
+        border-radius: 8px;
+        overflow: hidden;
+        text-align: center;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .document-card2 img {
+        width: 100%;
+        height: auto; /* Adjust the size of the image */
+        object-fit: contain;
+        max-height: 200px; /* Set a max height for images */
+        border-bottom: 1px solid #ddd;
+    }
+
+    .document-card2 h5 {
+        margin: 10px 0 0;
+        font-size: 14px;
+        color: #e2e8f0;
+    }
+
+    .document-card2 p {
+        margin: 10px 0 0; /* Space above description */
+        text-align: left;
+        font-size: 12px; /* Smaller font size for description */
+        color: #e2e8f0; /* Description color */
+    }
+
+</style>
+
+{% endblock %}
